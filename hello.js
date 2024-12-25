@@ -17,20 +17,35 @@ createListItem('eggs');
 function createNewItem(item){
     const li = document.createElement('li');
     li.appendChild(document.createTextNode(item));
+
+    const button = createButton('remove-item btn-link text-red');
     
-    const button = document.createElement('burron');
-    button.className = 'remove-item btn-link text-red';
-    
-    const icon = document.createElement('i');
-    icon.className = 'fa-solid fa-xmark';
-    
-    button.appendChild(icon);
     li.appendChild(button);
     
     document.querySelector('.items').appendChild(li);
 }
+// called in create new item
+function createButton(classes) {
+    const button = document.createElement('burron');
+    button.className = classes;
+    
+    const icon = createIcon('fa-solid fa-xmark');
+    button.appendChild(icon);
+    
+    return button;
+}
+// called in create new item
+function createIcon(classes) {
+    const icon = document.createElement('i');
+    icon.className = classes;
+    return icon;
+}
+
 
 createNewItem('Cheese');
+createNewItem('Bacon');
+createNewItem('Protein');
+
 
 
 
