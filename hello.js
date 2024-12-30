@@ -1,40 +1,39 @@
-function replaceFirstItem() {
-    const firstItem = document.querySelector('li:first-child');
+function removeClearButton() {
+    const clearBtn = document.querySelector('#clear');
+    clearBtn.remove();
+}
+function removeFirstItem(){
+    first = document.querySelector('li:nth-child(1)');
+    first.remove();
+}
+
+function removeItem(itemNumber){
+    const ul = document.querySelector('ul');
+    const li = document.querySelector(`li:nth-child(${itemNumber})`);
     
-    const li = document.createElement('li');
-    li.textContent = 'Replaced First';
-    
-    firstItem.replaceWith(li);
+    ul.removeChild(li);
+}
+
+function removeItem2(itemNumber){
+    const ul = document.querySelector('ul');
+    const li = document.querySelectorAll('li')[itemNumber];
+
+    ul.removeChild(li);
+}
+
+function removeItem3(itemNumber){
+    const li = document.querySelectorAll('li');
+    li[itemNumber-1].remove();
 }
 
 
-function replaceSecondItem(){
-    const secondItem = document.querySelector('li:nth-child(2)');
-    
-    secondItem.outerHTML = '<li>Replaced Second</li>';
-}
-
-function replaceAllItems(){
-    const items = document.querySelectorAll('li');
-    
-    items.forEach((item, index) => {
-        
-        if(index===1){
-            item.innerHTML = 'Second Item';
-        } else {
-            item.innerHTML = 'Replace All';
-        }
-    });
-}
 
 
-
-
-
-replaceFirstItem();
-replaceSecondItem();
-replaceAllItems();
-
+removeClearButton();
+//removeFirstItem();
+//removeItem(1);
+//removeItem2(1);
+removeItem3(1);
 
 
 
