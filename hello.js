@@ -1,39 +1,28 @@
-function removeClearButton() {
-    const clearBtn = document.querySelector('#clear');
-    clearBtn.remove();
-}
-function removeFirstItem(){
-    first = document.querySelector('li:nth-child(1)');
-    first.remove();
-}
+const clearBtn = document.querySelector('#clear');
 
-function removeItem(itemNumber){
-    const ul = document.querySelector('ul');
-    const li = document.querySelector(`li:nth-child(${itemNumber})`);
+
+
+function onClear() {
+    let itemList = document.querySelector('ul');
+    let items = itemList.querySelectorAll('li');
     
-    ul.removeChild(li);
-}
-
-function removeItem2(itemNumber){
-    const ul = document.querySelector('ul');
-    const li = document.querySelectorAll('li')[itemNumber];
-
-    ul.removeChild(li);
-}
-
-function removeItem3(itemNumber){
-    const li = document.querySelectorAll('li');
-    li[itemNumber-1].remove();
+    // items.forEach((item) => item.remove());
+    // console.log('Items cleared!')
+    while(itemList.firstChild){
+        itemList.removeChild(itemList.firstChild);
+    }
 }
 
 
+clearBtn.addEventListener('click', onClear);
 
 
-removeClearButton();
-//removeFirstItem();
-//removeItem(1);
-//removeItem2(1);
-removeItem3(1);
+
+
+
+
+
+
 
 
 
