@@ -1,71 +1,52 @@
-const logo = document.querySelector('img');
+// Keyboard events
 
+const itemInput = document.getElementById('item-input');
 
+const onKeyPress = () => {
+    console.log('keypress')
+};
 
-const onClick = () => {
-    console.log('click event');
-}
-const onDoubleClick = () => {
+const onKeyUp = () => {
+    console.log('keyup')
+};
 
-    if(document.body.style.backgroundColor !== 'teal'){
-        document.body.style.backgroundColor = 'teal';
-        document.body.style.color = 'white';
-    }else{
-        document.body.style.backgroundColor = 'white';
-        document.body.style.color = 'grey';
+const onKeyDown = (e) => {
+    console.log(e.key);
+    if(e.key === 'Enter') {
+        alert('You pressed enter');
     }
-    console.log('double click event');
-}
-
-const onRightClick = () => {
-    alert('I have been right clicked');
-    console.log('RIGHT click event');
-}
-
-const onMouseDown = () => {
-    document.body.style.color = 'goldenrod';
-}
-const onMouseUp = () => {
-    if(document.body.style.backgroundColor === 'teal'){
-        document.body.style.color = 'grey';
-    }else if(document.body.style.backgroundColor !== 'teal'){
-        document.body.style.color = 'grey';
+    // KeyCode
+    if(e.keyCode === 13) {
+        alert('You pressed enter');
     }
-}
 
-const onMouseWheel = () => {
-    console.log('WHEELIE');
-}
+    if(e.code === 'Digit1') {
+        console.log('You pressed 1');
+    }
 
-const onMouseOver = () => {
-    console.log('Mouse over');
-}
-
-const onDragStart = () => {
-    console.log('Drag start event')
-}
+    if(e.repeat) {
+        console.log('You are holding down ' + e.key);
+    }
+};
 
 
-const onDrag = () => {
-    console.log('Drag event')
-}
-
-const onDragEnd = () => {
-    console.log('Drag end event')
-}
 
 
-// Event Listeners
-logo.addEventListener('dblclick', onDoubleClick);
-logo.addEventListener('click', onClick);
-logo.addEventListener('contextmenu', onRightClick);
-logo.addEventListener('mousedown', onMouseDown);
-logo.addEventListener('mouseup', onMouseUp);
-logo.addEventListener('wheel', onMouseWheel);
-logo.addEventListener('mouseover', onMouseOver);
-logo.addEventListener('dragstart', onDragStart);
-logo.addEventListener('drag', onDrag);
-logo.addEventListener('dragend', onDragEnd);
+// itemInput.addEventListener('keypress', onKeyPress);
+// itemInput.addEventListener('keyup', onKeyUp);
+itemInput.addEventListener('keydown', onKeyDown);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
