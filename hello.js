@@ -39,9 +39,12 @@ function addToList(item) {
     ul.appendChild(newItem);
 }
 
-
-
 form.addEventListener('submit', onSubmit);
+
+
+
+
+
 
 
 
