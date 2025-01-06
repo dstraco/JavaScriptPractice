@@ -1,8 +1,6 @@
 // Receiving form data from Shopping List
-
 const form = document.getElementById('item-form');
 
-// Method 1
 function onSubmit(e){
     e.preventDefault();
 
@@ -15,21 +13,8 @@ function onSubmit(e){
     }
 
     console.log(item, priority);
-}
-
-// Method 2
-function onSubmit2(e) {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-
-    const item = formData.get('item');
-    const priority = formData.get('priority');
-    console.log(item, priority);
-    // add to list
     addToList(item);
 }
-
 
 // Taking in items from input and adding to the shopping list
 function addToList(item) {
@@ -56,7 +41,9 @@ function addToList(item) {
 
 
 
-form.addEventListener('submit', onSubmit2);
+form.addEventListener('submit', onSubmit);
+
+
 
 
 
