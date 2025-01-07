@@ -3,6 +3,7 @@ const itemForm = document.getElementById('item-form');
 const itemInput = document.getElementById('item-input');
 const itemList = document.getElementById('item-list')
 const clearBtn = document.querySelector('#clear');
+const itemFilter = document.getElementById('filter');
 
 function createButton(classes){
     const button = document.createElement('button');
@@ -34,15 +35,21 @@ function addItem(e) {
     const button = createButton('remove-item btn-link text-red');
     li.appendChild(button);
 
-    // Add li to ul
+    // Add li to dom
     itemList.appendChild(li);
+
+    checkUI();
+
     itemInput.value = '';
 }
 
 function removeItem(e){
     if(e.target.parentElement.classList.contains('remove-item')){
+        if(confirm('Are you sure?')) {
         e.target.parentElement.parentElement.remove();
+        }
     }
+    checkUI();
 }
 
 function clearAll(){
@@ -51,20 +58,42 @@ function clearAll(){
     }
 }
 
+function checkUI(){
+    const items = itemList.querySelectorAll('li');
+    if(items.length === 0){
+        clearBtn.style.display = 'none';
+        itemFilter.style.display = 'none';
+    } else {
+        clearBtn.style.display = 'block';
+        itemFilter.style.display = 'block';
+    }
+}
 
+function filterItems(e) {
+    const items = itemList.querySelectorAll('li');
+    const text = e.target.value.toLowerCase();
+
+    items.forEach(item => {
+        const itemName = item.firstChild.textContent.toLowerCase();
+
+        if (itemName.indexOf(text) !== -1) {
+            item.style.display = 'flex';
+        } else {
+           item.style.display = 'none';
+        }
+    });
+}
 
 // Event Listeners
 itemForm.addEventListener('submit', addItem);
-itemList.addEventListener('click', removeItem)
-clearBtn.addEventListener('click', clearAll)
+itemList.addEventListener('click', removeItem);
+clearBtn.addEventListener('click', clearAll);
+itemFilter.addEventListener('input', filterItems);
 
 
+checkUI();
 
 
-
-
-
-// if no items do not show "filter items" or "clear all"
 
 
 
