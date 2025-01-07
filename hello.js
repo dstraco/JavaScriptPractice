@@ -1,45 +1,50 @@
 // Receiving form data from Shopping List
-const form = document.getElementById('item-form');
+const itemForm = document.getElementById('item-form');
+const itemInput = document.getElementById('item-input');
+const itemList = document.getElementById('item-list')
 
-function onSubmit(e){
-    e.preventDefault();
 
-    const item = document.getElementById('item-input').value;
-    const priority = document.getElementById('priority-input').value;
+function createButton(classes){
+    const button = document.createElement('button');
+    button.className = classes;
+    const icon = createIcon('fa-solid fa-xmark');
+    button.appendChild(icon);
+    return button;
+}
+function createIcon(classes){
+    const icon = document.createElement('i');
+    icon.className = classes;
+    return icon;
+}
 
-    if (item === '' || priority === '0') {
-        alert('Please fill in all fields');
+function addItem(e) {
+    e.preventDefault();     // always call on form object
+
+    const newItem = itemInput.value;
+
+    // Validate input
+    if (newItem === ''){
+        alert('Enter an item');
         return;
     }
 
-    console.log(item, priority);
-    addToList(item);
+    // Create List item
+    const li = document.createElement('li');
+    li.appendChild(document.createTextNode(newItem));
+    const button = createButton('remove-item btn-link text-red');
+    li.appendChild(button);
+
+    // Add li to ul
+    itemList.appendChild(li);
+    itemInput.value = '';
 }
 
-// Taking in items from input and adding to the shopping list
-function addToList(item) {
-    newItem = document.createElement('li');
-    ul = document.querySelector('ul');
 
-    // Create text node and create elements button/ icon
-    const text = document.createTextNode(item);
-    const button = document.createElement('button');
-    const icon = document.createElement('i');
 
-    // Style new elements/ nodes
-    button.className = 'remove-item btn-link text-red';
-    button.appendChild(icon);
-    icon.className = 'fa-solid fa-xmark';
+// Event Listeners
+itemForm.addEventListener('submit', addItem);
 
-    // Append text node and button element to new list element
-    newItem.appendChild(text);
-    newItem.appendChild(button);
 
-    // Append new item to the parent node
-    ul.appendChild(newItem);
-}
-
-form.addEventListener('submit', onSubmit);
 
 
 
