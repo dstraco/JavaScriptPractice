@@ -2,7 +2,7 @@
 const itemForm = document.getElementById('item-form');
 const itemInput = document.getElementById('item-input');
 const itemList = document.getElementById('item-list')
-
+const clearBtn = document.querySelector('#clear');
 
 function createButton(classes){
     const button = document.createElement('button');
@@ -39,10 +39,24 @@ function addItem(e) {
     itemInput.value = '';
 }
 
+function removeItem(e){
+    if(e.target.parentElement.classList.contains('remove-item')){
+        e.target.parentElement.parentElement.remove();
+    }
+}
+
+function clearAll(){
+    while(itemList.firstChild){
+        itemList.removeChild(itemList.firstChild);
+    }
+}
+
 
 
 // Event Listeners
 itemForm.addEventListener('submit', addItem);
+itemList.addEventListener('click', removeItem)
+clearBtn.addEventListener('click', clearAll)
 
 
 
@@ -50,10 +64,7 @@ itemForm.addEventListener('submit', addItem);
 
 
 
-
-
-
-
+// if no items do not show "filter items" or "clear all"
 
 
 
